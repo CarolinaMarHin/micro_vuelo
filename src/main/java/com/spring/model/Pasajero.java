@@ -1,10 +1,15 @@
 package com.spring.model;
 
 import java.sql.Date;
+import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -26,7 +31,12 @@ public class Pasajero {
 	
 	@Column(name = "correo")
 	private String correo;
-
+	
+	@OneToMany(mappedBy="ListaPasajeros", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<ListaPasajeros> listaVuelos(){
+		return this.listaVuelos();
+	};
+	
 	public int getIdPasajero() {
 		return idPasajero;
 	}
@@ -72,7 +82,6 @@ public class Pasajero {
 	}
 
 	public Pasajero(int idPasajero, String nombre, String apellido, String edad, String correo) {
-		super();
 		this.idPasajero = idPasajero;
 		this.nombre = nombre;
 		this.apellido = apellido;

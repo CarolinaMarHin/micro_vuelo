@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.spring.model.ListaPasajeros;
 import com.spring.model.Pasajero;
 import com.spring.model.Vuelo;
+import com.spring.repository.ListaPasajerosRepository;
 import com.spring.repository.PasajerosRepository;
 import com.spring.repository.VuelosRepository;
 
@@ -26,6 +28,9 @@ public class MicroVueloRest {
 	@Autowired
 	private PasajerosRepository pasajerosRepository;
 	
+	@Autowired
+	private ListaPasajerosRepository listaPasajerosRepository;
+	
 	@GetMapping("/listavuelos")
 	public List<Vuelo> listarVuelo(){
 		return vueloRepository.findAll();
@@ -36,6 +41,11 @@ public class MicroVueloRest {
 		return pasajerosRepository.pasajeroById(id);
 	}
 
+	@GetMapping("/pasajerosvuelo")
+	public List<Pasajero> pasajerosvuelo(@RequestParam(name="idVuelo") Integer idVuelo){
+		return listaPasajerosRepository.pasajerosVuelo(idVuelo);
+	}
+	
 	@GetMapping("/listapasajeros")
 	public List<Pasajero> listarPasajeros(){
 		return pasajerosRepository.findAll();
