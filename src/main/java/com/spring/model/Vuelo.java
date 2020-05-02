@@ -26,10 +26,10 @@ public class Vuelo {
 	@Column(name = "destino")
 	private String destino;
 	
-	@Column(name = "fechaSalida")
+	@Column(name = "fecha_salida")
 	private Date fechaSalida;
 	
-	@Column(name = "fechaLlegada")
+	@Column(name = "fecha_llegada")
 	private Date fechaLlegada;
 		
 	public int getIdVuelo() {

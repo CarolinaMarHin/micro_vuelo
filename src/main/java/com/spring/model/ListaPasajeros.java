@@ -17,11 +17,11 @@ public class ListaPasajeros {
 	private int idLista;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="idPasajero")
+    @JoinColumn(name="id_Pasajero")
     private Pasajero pasajero;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="idVuelo")
+    @JoinColumn(name="id_Vuelo")
     private Vuelo vuelo;
 
 	public int getIdLista() {

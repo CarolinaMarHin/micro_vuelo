@@ -57,14 +57,28 @@ public class MicroVueloRest {
 	public void insertar(@RequestBody Pasajero pasajero){
 		pasajerosRepository.save(pasajero);
 	}
+	
 
-	@PutMapping("/actualizarpasajero")
-	public void modificar(@RequestBody Pasajero pasajero){
-		pasajerosRepository.save(pasajero);
+	@PostMapping("/agregarvuelo")
+	public void insertar(@RequestBody Vuelo vuelo){
+		vueloRepository.save(vuelo);
 	}
-
+	
 	@DeleteMapping(value = "/eliminarpasajero/{id}")
 	public void eliminar(@PathVariable("id") Integer id){
 		pasajerosRepository.deleteById(id);
+	}
+	
+	@DeleteMapping(value = "/eliminarvuelo/{id}")
+	public void eliminarvuelo(@PathVariable("id") Integer id){
+		vueloRepository.deleteById(id);
+	}
+	
+	@PutMapping(path = "/actualizarvuelo")
+	public void actualizarVuelo(@RequestBody Vuelo vuelo) {
+		if (vueloRepository.existsById(vuelo.getIdVuelo())) {
+			vueloRepository.actualizarVuelo(vuelo.getIdVuelo(), vuelo.getOrigen(), vuelo.getDestino(),
+					vuelo.getFechaSalida().toString(), vuelo.getFechaLlegada().toString());
+		}
 	}
 }
